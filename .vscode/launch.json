@@ -12,7 +12,7 @@
             "args": [
                 "flask",
                 "--app",
-                "${workspaceFolder}/src/main.py",
+                "${workspaceFolder}/api/index.py",
                 "--debug",
                 "run"
             ],
