@@ -5,7 +5,7 @@ from PIL import Image
 app = Flask(__name__)
 
 
-@app.route("/", methods=["GET"])
+@app.route("/api", methods=["GET"])
 def get_color_image():
     # Get the color parameter from the request
     color = request.args.get(
