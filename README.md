@@ -7,6 +7,7 @@
   - [Color image](#color-image)
     - [Setting a color](#setting-a-color)
     - [Setting the size of the image](#setting-the-size-of-the-image)
+  - [All query parameters](#all-query-parameters)
 
 ## Color image
 
@@ -29,3 +30,11 @@ You can set the size of the image by passing the `&width` and `&height` query pa
 ```
 
 > Example: ![Color](https://colorsplash.vercel.app/api?width=50&height=10)
+
+## All query parameters
+
+| Name     | Description                 | Type   | Default  |
+| :--      | :---------                  | :--    | :-----   |
+| `color`  | Set the color of the image  | string | `FFFFFF` |
+| `width`  | Set the width of the image  | int    | 16       |
+| `height` | Set the height of the image | int    | 16       |
