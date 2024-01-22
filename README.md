@@ -1,5 +1,7 @@
 # Colorsplash
 
+Simple way to generate your own color images via HTTP requests
+
 ## Features
 
 - [Colorsplash](#colorsplash)
