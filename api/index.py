@@ -18,6 +18,7 @@ def get_color_image():
     )  # Default to white if no color provided
     if color[0] != "#":
         color = "#" + color
+    color = color.lower()
 
     # Get the size parameters from the request
     image_width = int(request.args.get("width", "16"))
