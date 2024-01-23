@@ -16,7 +16,7 @@ Simple way to generate your own color images via HTTP requests
 
 ### Setting a color
 
-To set the color of the image you can pass the `&color` query parameter. You pass in a hex color value (e.g. `&color=FF0000`)
+To set the color of the image you can pass the `&color` query parameter. You pass in a hex color value (e.g. `&color=ff0000`)
 
 ```md
 ![Color](https://colorsplash.vercel.app/api?color=00ee77)
@@ -51,6 +51,6 @@ You can set the size of the image by passing the `&width` and `&height` query pa
 
 | Name     | Description                 | Type   | Default  |
 | :--      | :---------                  | :--    | :-----   |
-| `color`  | Set the color of the image  | string | `FFFFFF` |
+| `color`  | Set the color of the image  | string | `ffffff` |
 | `width`  | Set the width of the image  | int    | 16       |
 | `height` | Set the height of the image | int    | 16       |

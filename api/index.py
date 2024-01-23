@@ -13,12 +13,10 @@ def has_alfa_value(color: str):
 @app.route("/api", methods=["GET"])
 def get_color_image():
     # Get the color parameter from the request
-    color = request.args.get(
-        "color", "#FFFFFF"
-    )  # Default to white if no color provided
+    color = request.args.get("color", "#ffffff").lower()
+    # Default to white if no color provided
     if color[0] != "#":
         color = "#" + color
-    color = color.lower()
 
     # Get the size parameters from the request
     image_width = int(request.args.get("width", "16"))
