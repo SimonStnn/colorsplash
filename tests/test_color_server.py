@@ -80,6 +80,26 @@ class ColorServerTestCase(unittest.TestCase):
             pixels = list(img.getdata())  # type: ignore
             self.assertTrue(all(pixel == expected_color for pixel in pixels))  # type: ignore
 
+        response = self.app.get("/api?color=000000FE")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "image/png")
+
+        with Image.open(BytesIO(response.data)) as img:
+            self.assertEqual(img.size, (16, 16))
+            expected_color = (0, 0, 0, 254)
+            pixels = list(img.getdata())  # type: ignore
+            self.assertTrue(all(pixel == expected_color for pixel in pixels))  # type: ignore
+
+        response = self.app.get("/api?color=000000fd")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "image/png")
+
+        with Image.open(BytesIO(response.data)) as img:
+            self.assertEqual(img.size, (16, 16))
+            expected_color = (0, 0, 0, 253)
+            pixels = list(img.getdata())  # type: ignore
+            self.assertTrue(all(pixel == expected_color for pixel in pixels))  # type: ignore
+
     def test_get_color_image_with_ff_as_alfa(self):
         response = self.app.get("/api?color=000000ff")
         self.assertEqual(response.status_code, 200)
