@@ -5,6 +5,11 @@ from PIL import Image
 app = Flask(__name__)
 
 
+# Check if a hex color is is transparent
+def has_alfa_value(color: str):
+    return len(color) > 7 and color[7:].lower() != "ff"
+
+
 @app.route("/api", methods=["GET"])
 def get_color_image():
     # Get the color parameter from the request
@@ -13,13 +18,16 @@ def get_color_image():
     )  # Default to white if no color provided
     if color[0] != "#":
         color = "#" + color
+    color = color.lower()
 
     # Get the size parameters from the request
     image_width = int(request.args.get("width", "16"))
     image_height = int(request.args.get("height", "16"))
 
+    mode = "RGBA" if has_alfa_value(color) else "RGB"
+
     # Create a solid color image using Pillow (PIL)
-    image = Image.new("RGB", (image_width, image_height), color)
+    image = Image.new(mode, (image_width, image_height), color)
 
     # Save the image to a BytesIO object
     image_io = io.BytesIO()
