@@ -1,7 +1,7 @@
 import unittest
 from io import BytesIO
 from PIL import Image
-from api.index import app
+from api.index import app, has_alfa_value
 
 
 class ColorServerTestCase(unittest.TestCase):
@@ -68,6 +68,17 @@ class ColorServerTestCase(unittest.TestCase):
             expected_color = (255, 255, 255)
             pixels = list(img.getdata())  # type: ignore
             self.assertTrue(all(pixel == expected_color for pixel in pixels))  # type: ignore
+
+    def test_has_alfa_value(self):
+        self.assertTrue(has_alfa_value("#00000000"))
+        self.assertTrue(has_alfa_value("#00000001"))
+        self.assertTrue(has_alfa_value("#00000056"))
+        self.assertTrue(has_alfa_value("#00000FE"))
+        self.assertTrue(has_alfa_value("#00000fe"))
+        self.assertFalse(has_alfa_value("#000000"))
+        self.assertFalse(has_alfa_value("#0000ff"))
+        self.assertFalse(has_alfa_value("#000000ff"))
+        self.assertFalse(has_alfa_value("#000000FF"))
 
 
 if __name__ == "__main__":
