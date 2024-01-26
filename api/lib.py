@@ -1,6 +1,11 @@
 from PIL import Image
 
 
+# Check if a hex color is is transparent
+def has_alfa_value(color: str):
+    return len(color) > 7 and color[7:].lower() != "ff"
+
+
 def create_gradient(mode: str, size: tuple[int, int], colors: list[str]):
     width, height = size
     base = Image.new(mode, (width, height), colors[0])

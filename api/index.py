@@ -7,11 +7,6 @@ from api.lib import create_gradient
 app = Flask(__name__)
 
 
-# Check if a hex color is is transparent
-def has_alfa_value(color: str):
-    return len(color) > 7 and color[7:].lower() != "ff"
-
-
 @app.route("/api", methods=["GET"])
 def get_color_image():
     # Get the color parameter from the request
