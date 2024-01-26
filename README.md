@@ -10,6 +10,7 @@ Simple way to generate your own color images via HTTP requests
     - [Setting a color](#setting-a-color)
     - [Passing an alfa value](#passing-an-alfa-value)
     - [Setting the size of the image](#setting-the-size-of-the-image)
+    - [Setting a gradient](#setting-a-gradient)
   - [All query parameters](#all-query-parameters)
 
 ## Color image
@@ -46,6 +47,24 @@ You can set the size of the image by passing the `&width` and `&height` query pa
 ```
 
 > Example: ![Color](https://colorsplash.vercel.app/api?width=50&height=10)
+
+### Setting a gradient
+
+Adding a color gradient is done by passing the colors with the `&colors` query parameter. The `&color` parameter is still required. This value will be used as the first color in the gradient.
+
+```md
+![Color](https://colorsplash.vercel.app/api?color=00ee77&colors=4287f5)
+```
+
+> Example: ![Color](https://colorsplash.vercel.app/api?color=00ee77&colors=4287f5)
+
+You can pass multiple colors in the `&colors` parameter, they have to be separated by a `,`.
+
+```md
+![Color](https://colorsplash.vercel.app/api?color=00ee77&colors=4287f5,cb42f5)
+```
+
+> Example: ![Color](https://colorsplash.vercel.app/api?color=00ee77&colors=4287f5,cb42f5)
 
 ## All query parameters
 
