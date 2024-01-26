@@ -2,7 +2,7 @@ import io
 from flask import Flask, request, send_file
 from PIL import Image
 
-from api.lib import create_gradient
+from api import lib
 
 app = Flask(__name__)
 
@@ -26,10 +26,10 @@ def get_color_image():
     image_height = int(request.args.get("height", "16"))
     size = (image_width, image_height)
 
-    mode = "RGBA" if has_alfa_value(color) else "RGB"
+    mode = "RGBA" if lib.has_alfa_value(color) else "RGB"
 
     if colors:
-        image = create_gradient(mode, size, [color, *colors])
+        image = lib.create_gradient(mode, size, [color, *colors])
     else:
         # Create a solid color image using Pillow (PIL)
         image = Image.new(mode, size, color)
