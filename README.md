@@ -73,3 +73,4 @@ You can pass multiple colors in the `&colors` parameter, they have to be separat
 | `color`  | Set the color of the image  | string | `ffffff` |
 | `width`  | Set the width of the image  | int    | 16       |
 | `height` | Set the height of the image | int    | 16       |
+| `colors` | Used for making a color | string |          |
