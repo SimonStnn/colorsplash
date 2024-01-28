@@ -26,7 +26,12 @@ def get_color_image():
     image_height = int(request.args.get("height", "16"))
     size = (image_width, image_height)
 
-    mode = "RGBA" if lib.has_alfa_value(color) else "RGB"
+    # Set mode to RGBA if color or any of the colors has an alfa value
+    mode = "RGB"
+    if lib.has_alfa_value(color) or (
+        colors and any(lib.has_alfa_value(color) for color in colors)
+    ):
+        mode = "RGBA"
 
     if colors:
         image = lib.create_gradient(mode, size, [color, *colors])
