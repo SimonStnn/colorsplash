@@ -6,9 +6,6 @@ from api import lib
 
 app = Flask(__name__)
 
-def has_alfa_value(color):
-    # This function checks if a color has an alpha value, returning True if it does
-    return color.lower().lstrip("#")[-1] in "0123456789"
 
 @app.route("/api", methods=["GET"])
 def get_color_image():
@@ -16,13 +13,11 @@ def get_color_image():
     color = request.args.get("color", "#ffffff").lower()
     colors = request.args.get("colors")
     # Default to white if no color provided
-    if not color.startswith("#"):
+    if color[0] != "#":
         color = "#" + color
-    
     if colors:
         colors = [
-            "#" + color if not color.startswith("#") else color 
-            for color in colors.split(",")
+            "#" + color if color[0] != "#" else color for color in colors.split(",")
         ]
         colors = [color.lower() for color in colors]
 
@@ -31,9 +26,11 @@ def get_color_image():
     image_height = int(request.args.get("height", "16"))
     size = (image_width, image_height)
 
-    # Set mode to RGBA if any of the colors has an alpha value
+    # Set mode to RGBA if color or any of the colors has an alfa value
     mode = "RGB"
-    if has_alfa_value(color) or (colors and any(has_alfa_value(c) for c in colors)):
+    if lib.has_alfa_value(color) or (
+        colors and any(lib.has_alfa_value(color) for color in colors)
+    ):
         mode = "RGBA"
 
     if colors:
