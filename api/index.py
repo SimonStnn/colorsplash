@@ -9,7 +9,7 @@ app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 @app.route("/api", methods=["GET"])
-@cache.cached(timeout=300, query_string=True)
+@cache.cached(timeout=300, query_string=True) #type: ignore
 def get_color_image():
     # Get the color parameter from the request
     color = request.args.get("color", "#ffffff").lower()
