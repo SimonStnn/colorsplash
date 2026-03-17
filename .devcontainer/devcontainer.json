@@ -5,16 +5,19 @@
   "image": "mcr.microsoft.com/devcontainers/python:3-3.13-trixie",
   "features": {
     "ghcr.io/dhoeric/features/act:1": {},
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": { "moby": false },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
     "ghcr.io/va-h/devcontainers-features/uv:1": {}
   },
-
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
-
+  // Mount the host's ~/.ssh directory as a read-only volume in the container
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached,readonly"
+  ],
   // Open the workspace file after container creation
   "postStartCommand": "uv sync",
-
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
@@ -31,11 +34,11 @@
         "ms-python.vscode-pylance",
         "ms-python.isort",
         "redhat.vscode-yaml",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "bruno-api-client.bruno"
       ]
     }
   },
-
   "remoteEnv": {
     // Set UV_CACHE_DIR to a location inside the devcontainer to persist the cache
     // and allow for hard linking of cached files. (just makes it faster)
