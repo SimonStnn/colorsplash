@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
-            "type": "python",
+            "name": "Python: Colorsplash API",
+            "type": "debugpy",
             "request": "launch",
-            "program": "-m",
+            "python": "${workspaceFolder}/.venv/bin/python",
+            "module": "flask",
             "args": [
-                "flask",
                 "--app",
                 "${workspaceFolder}/api/index.py",
                 "--debug",

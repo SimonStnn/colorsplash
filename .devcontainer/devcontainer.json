@@ -1,0 +1,45 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+  "name": "Python 3",
+  "image": "mcr.microsoft.com/devcontainers/python:3-3.13-trixie",
+  "features": {
+    "ghcr.io/dhoeric/features/act:1": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": { "moby": false },
+    "ghcr.io/va-h/devcontainers-features/uv:1": {}
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Open the workspace file after container creation
+  "postStartCommand": "uv sync",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+        "yzhang.markdown-all-in-one",
+        "mhutchie.git-graph",
+        "streetsidesoftware.code-spell-checker",
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.vscode-python-envs",
+        "ms-python.vscode-pylance",
+        "ms-python.isort",
+        "redhat.vscode-yaml",
+        "tamasfe.even-better-toml"
+      ]
+    }
+  },
+
+  "remoteEnv": {
+    // Set UV_CACHE_DIR to a location inside the devcontainer to persist the cache
+    // and allow for hard linking of cached files. (just makes it faster)
+    "UV_CACHE_DIR": "/workspaces/colorsplash/.uv-cache"
+  },
+  "remoteUser": "root"
+}

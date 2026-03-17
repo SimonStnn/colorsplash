@@ -1,0 +1,11 @@
+[project]
+name = "colorsplash"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flask==3.0.1",
+    "flask-caching==2.3.0",
+    "pillow>=11.0.0",
+]
