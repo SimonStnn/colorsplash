@@ -8,16 +8,21 @@
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "moby": false
     },
-    "ghcr.io/va-h/devcontainers-features/uv:1": {}
+    "ghcr.io/va-h/devcontainers-features/uv:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    }
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
-  // Mount the host's ~/.ssh directory as a read-only volume in the container
+  // Mount the host's ~/.ssh directory as a read-only volume in the container.
+  // On Windows, ${localEnv:HOME} may be unset, so fall back to USERPROFILE to avoid
+  // mounting '/.ssh' (which doesn't exist).
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached,readonly"
+    "source=${localEnv:HOME:-${localEnv:USERPROFILE}}/.ssh,target=/root/.ssh,type=bind,consistency=cached,readonly"
   ],
   // Open the workspace file after container creation
-  "postStartCommand": "uv sync",
+  "postStartCommand": "./setup.sh",
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
