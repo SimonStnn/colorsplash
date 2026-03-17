@@ -15,8 +15,11 @@ def get_color_image(
     width: int = 16,
     height: int = 16,
 ) -> Response:
-    color = color.lower()
-    if color[0] != "#":
+    color = color.strip().lower()
+    if not color:
+        color = "#ffffff"
+
+    if not color.startswith("#"):
         color = "#" + color
 
     color_list: list[str] = []
@@ -32,7 +35,8 @@ def get_color_image(
         mode = "RGBA"
 
     if color_list:
-        image = lib.create_gradient(mode, (width, height), [color, *color_list])
+        image = lib.create_gradient(
+            mode, (width, height), [color, *color_list])
     else:
         image = Image.new(mode, (width, height), color)
 

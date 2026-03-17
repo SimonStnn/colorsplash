@@ -9,12 +9,13 @@
             "type": "debugpy",
             "request": "launch",
             "python": "${workspaceFolder}/.venv/bin/python",
-            "module": "flask",
+            "module": "uvicorn",
             "args": [
-                "--app",
-                "${workspaceFolder}/api/index.py",
-                "--debug",
-                "run"
+                "api.index:app",
+                "--host",
+                "127.0.0.1",
+                "--port",
+                "8000"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

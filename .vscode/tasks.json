@@ -16,7 +16,7 @@
     {
       "label": "Run Tests",
       "type": "shell",
-      "command": "pytest tests/ -v",
+      "command": "uv run pytest tests/ -v",
       "group": {
         "kind": "test",
         "isDefault": true
