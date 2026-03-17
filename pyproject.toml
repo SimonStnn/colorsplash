@@ -5,7 +5,16 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "flask==3.0.1",
-    "flask-caching==2.3.0",
+    "fastapi[standard]==0.115.12",
     "pillow>=11.0.0",
+    "httpx>=0.28.1",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "uvicorn>=0.42.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
